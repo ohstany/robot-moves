@@ -36,7 +36,7 @@ In order to find out which area is safe we need to provide a few arguments, **ax
     -s|--s|--safe    # Set safe area range
 
     # Example
-    node robot.js --area 1000 --safe 23
+    node robot.js --axis 1000 --safe 23
 
 ## Requirements
 
