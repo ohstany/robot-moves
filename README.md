@@ -9,34 +9,50 @@ less than 23.
 
 ## Solution Steps
 
--   Representing a graph using a 2D array implementing the x-axis & y-axis surface. Axis length is set to 1000 by default since we want to have axis range -100...100, or axis range \* 2 = 1000.
--   We are simply visiting first quadrant only one by one point.
--   While iterrating 2D loop we're accessing each point checking whether current position is safe or not.
--   As and when we find a new safe coordinate to move to, increment the counter(safeArea).
+-   Representing a graph using a 2D array implementing the x-axis & y-axis grid surface.
+-   Each axis length we'll find out by incrementing a variable digit, on each step splitting it to single digits and sum them up abs(number) to a result that is less than or equal to 23.
+-   Robot simply visiting first quadrant only one by one point and moves on the surface only to the safe connected areas.
+-   In order to find out which areas are safe and robot can actually move into, let's iterrate two dimentional loop and find that sum of abs(x) and abs(y) is less than 23, and then assign the area as to be safe.
+-   Please open `grid-view.htm` to see how safe areas(**green fields**) are look like in a 2D grid format. Eventually we'll see a lot of triangled islands that are joined together. That are safe areas for robot to travel. Also, there also will be the areas (marked as **red fields**) which are satisfy our condition 23 but not connected with each other, which means that robot won't be able to travel to them. We'll ignore those fields from count and mark them as red label.
+-   To ingore safe fields that are not connected with each other we'll be comparing via simple linear operation 4 quadratic fields, the rightmost bottom field must have connection relationship with the leftmost or the top right field otherwise it will be ignored.
 -   In the end of a day we've complexity of O(1) without over-engineering it.
 
-## Clone Source Code
+## Output #1: Running example to see Grid via GUI
+
+Open file the browser to see grid surface.
+
+-   **Green** areas are safe
+-   **Red** areas are safe but not accessible by robot
+-   **Gray** areas is dangerous and contain EMP mines
+
+    grid-view.htm
+
+## Output #2: Clone Source Code and Execute in the Terminal
+
+Script must be executed via node.js
 
     git clone https://github.com/ohstany/robot-moves.git
 
 ## Program Execution
 
     node robot.js
+    or
+    node robot.js --safe 20
 
 Expected output
 
-    > Surface area size: 4,008,004 points
-    > Area size robot can access: 1,261,676 points
+    > Surface area size: 1,954,404 points
+    > Area size robot can access: 595,392 points
 
 ## Additional Controlled Arguments
 
-In order to find out which area is safe we need to provide a few arguments, **axis** area langth (default: 1000) and **safe** area range (default: 23).
+In order to find out which area is safe we need to provide one argument **safe** area range (default: 23).
+On GUI html page you are able to set this value dynamically via input field.
 
-    -a|--a|--axis    # Set surface area axis length
     -s|--s|--safe    # Set safe area range
 
     # Example
-    node robot.js --axis 1000 --safe 23
+    node robot.js --s 23
 
 ## Requirements
 

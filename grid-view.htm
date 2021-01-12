@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link rel="preconnect" href="https://fonts.gstatic.com" />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+			rel="stylesheet"
+		/>
+		<script
+			src="https://unpkg.com/babel-standalone@6/babel.min.js"
+			crossorigin
+		></script>
+		<script
+			src="https://unpkg.com/react@17.0.1/umd/react.production.min.js"
+			crossorigin
+		></script>
+		<script
+			src="https://unpkg.com/react-dom@17.0.1/umd/react-dom.production.min.js"
+			crossorigin
+		></script>
+	</head>
+	<body>
+		<style>
+			* {
+				font-family: "Roboto", sans-serif;
+			}
+			.cell {
+				display: inline-block;
+				width: 24px;
+				height: 24px;
+				line-height: 24px;
+				font-size: 7px;
+				text-align: center;
+				border: 1px solid white;
+				background-color: white;
+				float: left;
+			}
+			.cell.safe {
+				background-color: #00c384;
+			}
+			.cell.dan {
+				background-color: #d4d4d4;
+				color: white;
+			}
+			.cell.m {
+				background-color: #ff9f9f;
+				color: white;
+			}
+		</style>
+
+		<div id="grid"></div>
+
+		<script type="text/babel">
+			const { useEffect, useState, useCallback, useMemo } = React;
+
+			const integerSum = (num) =>
+				Array.from(Math.abs(num).toString()).reduce(
+					(p, n) => p + parseInt(n),
+					0
+				);
+
+			const addComma = (num) =>
+				num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+			const findAxisRange = (safe) => {
+				let limit = 0,
+					sum = 0;
+
+				while (1) {
+					sum = integerSum(limit);
+					if (sum > safe) break;
+					limit += 1;
+				}
+
+				return limit;
+			};
+
+			const Compon = () => {
+				const [grid, _grid] = useState([]);
+				const [safe, _safe] = useState(23);
+				const [safeArea, _safeArea] = useState(0);
+				const [surfaceArea, _surfaceArea] = useState(0);
+
+				const axisRange = useMemo(() => findAxisRange(safe), [safe]);
+
+				useEffect(() => {
+					if (safe) {
+						_grid(buildMap(axisRange));
+					}
+				}, [safe]);
+
+				// console.log(
+				// 	"data",
+				// 	axisRange,
+				// 	surfaceArea,
+				// 	safeArea,
+				// 	surfaceArea * 4,
+				// 	safeArea * 4,
+				// 	safe
+				// );
+
+				const buildMap = useCallback(
+					(range) => {
+						const axisRange = Array.from(
+							Array(range),
+							(_i, i) => i
+						);
+						return axisRange.reduce((p1, axisX, index1) => {
+							p1[index1] = axisRange.reduce(
+								(p2, axisY, index2) => {
+									const sum =
+										integerSum(axisX) + integerSum(axisY);
+
+									p2[index2] = {
+										sum,
+										safe: false,
+										safe: sum <= safe,
+										marked: false,
+									};
+
+									// remove not accessible area by robot
+									if (
+										index1 - 1 >= 0 &&
+										index2 - 1 >= 0 &&
+										p2[index2].safe &&
+										p2[index2 - 1].safe === false &&
+										p1[index1 - 1][index2 - 1].safe ==
+											false &&
+										p1[index1 - 1][index2].safe == false
+									) {
+										p2[index2].safe = false;
+										p2[index2].marked = true;
+									}
+
+									if (p2[index2].safe) {
+										// calc safe area
+										_safeArea((p) => p + 1);
+									}
+									// calc total area
+									_surfaceArea((p) => p + 1);
+
+									return p2;
+								},
+								[]
+							);
+
+							return p1;
+						}, []);
+					},
+					[safe]
+				);
+
+				const Grid = useCallback(() => {
+					return (
+						<div>
+							{grid.map((cell, ix) => {
+								return (
+									<div
+										className="col"
+										key={ix}
+										style={{
+											display: "inline-block",
+											float: "left",
+										}}>
+										{cell.map((c, ixx) => {
+											return (
+												<span
+													className={
+														"cell" +
+														" " +
+														(c.safe
+															? "safe"
+															: "dan") +
+														" " +
+														(c.marked ? " m" : "")
+													}
+													key={ixx}></span>
+											);
+										})}
+									</div>
+								);
+							})}
+						</div>
+					);
+				}, [grid.length, safe]);
+
+				return (
+					<div
+						style={{
+							margin: "0 auto",
+							width: 24 * grid.length + grid.length * 2,
+							height: 24 * grid.length + grid.length * 2,
+						}}>
+						<div
+							className="inp"
+							style={{
+								minWidth: 500,
+								marginTop: 20,
+								marginBottom: 10,
+								lineHeight: "24px",
+							}}>
+							<label>
+								Enter Safe number range:
+								<input
+									style={{
+										marginLeft: 5,
+										width: 30,
+									}}
+									value={safe}
+									onChange={({ target: { value } }) => {
+										if (value < 30) {
+											_safe(value);
+										}
+									}}
+								/>
+							</label>
+							<div>
+								<b>Surface area size:</b>{" "}
+								{addComma(surfaceArea * 4)}
+							</div>
+							<div>
+								<b>Area size robot can access:</b>{" "}
+								{addComma(safeArea * 4)}
+							</div>
+						</div>
+
+						<Grid />
+					</div>
+				);
+			};
+
+			ReactDOM.render(<Compon />, document.getElementById("grid"));
+		</script>
+	</body>
+</html>
