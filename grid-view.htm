@@ -213,6 +213,8 @@
 									onChange={({ target: { value } }) => {
 										if (value < 30) {
 											_safe(value);
+											_safeArea(0);
+											_surfaceArea(0);
 										}
 									}}
 								/>
@@ -223,7 +225,7 @@
 							</div>
 							<div>
 								<b>Area size robot can access:</b>{" "}
-								{addComma(safeArea * 4)}
+								{addComma((safeArea - axisRange) * 4 + 1)}
 							</div>
 						</div>
 

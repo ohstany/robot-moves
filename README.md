@@ -26,9 +26,8 @@ Open file the browser to see grid surface.
 -   **Gray** areas is dangerous and contain EMP mines
 
     grid-view.htm
-    
-<img width="842" alt="Screen Shot 2021-01-12 at 7 53 31 PM" src="https://user-images.githubusercontent.com/44670054/104306412-411a9c00-5511-11eb-81b8-79249205fb1a.png">
 
+<img width="842" alt="Screen Shot 2021-01-12 at 7 53 31 PM" src="https://user-images.githubusercontent.com/44670054/104306412-411a9c00-5511-11eb-81b8-79249205fb1a.png">
 
 ## Output #2: Clone Source Code and Execute in the Terminal
 
@@ -45,7 +44,7 @@ Script must be executed via node.js
 Expected output
 
     > Surface area size: 1,954,404 points
-    > Area size robot can access: 595,392 points
+    > Area size robot can access: 592,597 points
 
 ## Additional Controlled Arguments
 

@@ -106,7 +106,9 @@ const robotMoves = () => {
 	// As there are 4 quadrants we will multiply the result by 4
 	console.log(`> Surface area size: ${addComma(surfaceAreaSize * 4)} points`);
 	console.log(
-		`> Area size robot can access: ${addComma(safeAreaSize * 4)} points`
+		`> Area size robot can access: ${addComma(
+			(safeAreaSize - axisRange) * 4 + 1
+		)} points`
 	);
 };
 
