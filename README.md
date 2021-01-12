@@ -17,7 +17,7 @@ less than 23.
 -   To ingore safe fields that are not connected with each other we'll be comparing 4 quadratic fields via simple linear operation - the rightmost bottom field must have connection relationship with the leftmost or the top rightmost field, otherwise it will be ignored.
 -   In the end of a day we've complexity of O(1) without over-engineering it.
 
-## Output #1: Running example to see Grid via GUI
+## Output #1: Run example to see Grid via GUI
 
 Open file the browser to see grid surface.
 
