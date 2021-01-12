@@ -10,11 +10,11 @@ less than 23.
 ## Solution Steps
 
 -   Representing a graph using a 2D array implementing the x-axis & y-axis grid surface.
--   Each axis length we'll find out by incrementing a variable digit, on each step splitting it to single digits and sum them up abs(number) to a result that is less than or equal to 23.
--   Robot simply visiting first quadrant only one by one point and moves on the surface only to the safe connected areas.
--   In order to find out which areas are safe and robot can actually move into, let's iterrate two dimentional loop and find that sum of abs(x) and abs(y) is less than 23, and then assign the area as to be safe.
--   Please open `grid-view.htm` to see how safe areas(**green fields**) are look like in a 2D grid format. Eventually we'll see a lot of triangled islands that are joined together. That are safe areas for robot to travel. Also, there also will be the areas (marked as **red fields**) which are satisfy our condition 23 but not connected with each other, which means that robot won't be able to travel to them. We'll ignore those fields from count and mark them as red label.
--   To ingore safe fields that are not connected with each other we'll be comparing via simple linear operation 4 quadratic fields, the rightmost bottom field must have connection relationship with the leftmost or the top right field otherwise it will be ignored.
+-   Each axis length we'll find by incrementing a variable digit, on each increment step splitting it to single digits and sum them abs(number) to a result that is less than or equal to 23.
+-   Robot simply visit first quadrant only one by one point and moves on the surface only to the safe connected areas.
+-   In order to find out which areas are safe and robot can actually move to, let's iterrate two dimentional loop and find that sum of abs(x) and abs(y) is less than 23, and then assign safe label to the area.
+-   Please open `grid-view.htm` to see how safe areas(**green fields**) are look like in a 2D grid format. Eventually we'll see a lot of triangled islands that are joined together. That are safe areas for robot to travel. Also, there will be the areas (marked as **red fields**) which are satisfy our condition 23 but not connected with each other, which means that robot won't be able to travel to them. We'll ignore those fields from count and mark them as a red label.
+-   To ingore safe fields that are not connected with each other we'll be comparing 4 quadratic fields via simple linear operation - the rightmost bottom field must have connection relationship with the leftmost or the top rightmost field, otherwise it will be ignored.
 -   In the end of a day we've complexity of O(1) without over-engineering it.
 
 ## Output #1: Running example to see Grid via GUI
