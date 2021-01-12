@@ -26,6 +26,9 @@ Open file the browser to see grid surface.
 -   **Gray** areas is dangerous and contain EMP mines
 
     grid-view.htm
+    
+<img width="842" alt="Screen Shot 2021-01-12 at 7 53 31 PM" src="https://user-images.githubusercontent.com/44670054/104306412-411a9c00-5511-11eb-81b8-79249205fb1a.png">
+
 
 ## Output #2: Clone Source Code and Execute in the Terminal
 
