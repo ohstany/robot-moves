@@ -27,7 +27,16 @@ Open file the browser to see grid surface.
 
     grid-view.htm
 
-<img width="842" alt="Screen Shot 2021-01-12 at 7 53 31 PM" src="https://user-images.githubusercontent.com/44670054/104306412-411a9c00-5511-11eb-81b8-79249205fb1a.png">
+
+Below is the result of axis(x, -y)
+
+![fullaxis](https://user-images.githubusercontent.com/44670054/104306412-411a9c00-5511-11eb-81b8-79249205fb1a.png)
+
+
+Full graph as follows
+
+![fullaxis](https://user-images.githubusercontent.com/44670054/104920511-3b262e80-59db-11eb-9223-85ef9b684fc4.png)
+
 
 ## Output #2: Clone Source Code and Execute it in the Terminal
 
