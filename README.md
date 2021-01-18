@@ -10,11 +10,11 @@ less than 23.
 ## Solution Steps
 
 - Representing a graph using a 2D array implementing the x-axis & y-axis grid surface.
-- Each axis length we'll find by incrementing a variable digit, on each increment step splitting it to single digits and sum them abs(number) to a result that is less than or equal to 23.
+- In order to find each axis(x,y) length we'll be incrementing a variable digit(0 at start) by 1 point, on each increment will split the number into separate single digits and sum them abs(number) to a result that is less than or equal to 23. If result be more than 23 will break the loop.
 - The robot simply visit the first quadrant only one by one point and moves on the surface only to the safe connected areas.
-- In order to find out which areas are safe and a robot can actually move to, let's iterate two dimensional loop and find the sum of abs(x) and abs(y) result initially is less or equal to 23, and then assign that area with a safe label.
-- Please open `grid-view.htm` to see how safe areas(**green fields**) are look like in a 2D grid format. Eventually we'll see a lot of triangle-like islands that are joined together. That are safe areas for a robot to travel. Also, there will be the areas (marked as **red fields**) which are satisfy our condition 23 but not connected with each other, which means that robot won't be able to travel to them. We'll ignore those fields from count and mark them as a red label.
-- To ignore safe fields that are not connected with each other we'll be comparing 4 quadratic fields via simple linear operation - the rightmost bottom field must have connection relationship with the leftmost or the top rightmost field, otherwise it will be ignored.
+- In order to find which areas are safe and a robot can actually move to, let's iterate two dimensional loop and find the sum of abs(x) and abs(y), then compare that the result is less or equal to 23, if so than assign current point area to be safe with a green label.
+- To see how safe areas(**green fields**) visually are look like (2D format), open in a browser `grid-view.htm`. Eventually we'll see a lot of triangle-like islands that are joined together. Those are safe areas for a robot to travel. Also, the areas marked as **red fields** are actually satisfying safe condition 23, but not connected with each other in 2D representation, what means that robot won't be able to travel to them. We'll ignore those fields and mark them to be a red label.
+- For finding a relation and ignore safe fields that are not connected with each other, we'll be comparing 2 quadrants or 4 fields at each quadrant via simple linear operation -> the top leftmost field of A quadrant must have relation with one of a field from B quadrant, otherwise it will be ignored.
 - In the end of a day we've complexity of O(1) without over-engineering it.
 
 ## Output #1: Run example to see Grid via GUI
