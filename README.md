@@ -50,7 +50,7 @@ Script `robot.js` must be executed via node.js
     or
     node robot.js --safe 20
 
-Expected output
+Expected output for safe area size 23
 
     > Surface area size: 1,954,404 points
     > Area size robot can access: 592,597 points
